@@ -44,10 +44,9 @@
                             <th style="width: 5%">Gender</th>
                             <th style="width: 10%">Phone Number</th>
                             <th style="width: 5%">Courses</th>
-                            <th style="width: 5%">Requests</th>
                             <th style="width: 10%">Created At</th>
                             <th style="width: 5%" class="text-center">Status</th>
-                            <th style="width: 10%"></th>
+                            <th style="width: 15%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -63,7 +62,6 @@
                                 <td>{{$teacher->getGender()}}</td>
                                 <td>{{$teacher->phone_number}}</td>
                                 <td class="text-center">{{$teacher->getCoursesCount()}}</td>
-                                <td class="text-center">{{$teacher->requests_count}}</td>
                                 <td>{{$teacher->created_at}}</td>
                                 <td class="project-state text-center">
                                     @if($teacher->status)

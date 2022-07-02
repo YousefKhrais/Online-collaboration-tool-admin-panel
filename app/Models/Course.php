@@ -5,16 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property mixed|string title
- * @property mixed|string description
- * @property mixed|string image_link
- * @property mixed|double price
- * @property mixed|integer num_of_hours
- * @property mixed|integer teacher_id
- * @property mixed|integer category_id
- * @property mixed|integer students_count
- */
 class Course extends Model
 {
     use HasFactory;
@@ -25,9 +15,13 @@ class Course extends Model
         'image_link',
         'price',
         'num_of_hours',
+        'students_count',
         'teacher_id',
         'category_id',
-        'students_count'
+        'schedule',
+        'requirements',
+        'syllabus',
+        'outline',
     ];
 
     public function students()

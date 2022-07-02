@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Course\CourseCreateRequest;
 use App\Http\Requests\Student\StudentCreateRequest;
+use App\Http\Requests\Teacher\StudentUpdateRequest;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -12,9 +13,7 @@ class StudentsController extends Controller
 {
     public function index()
     {
-        return view('dashboard.students.index', array(
-            'students' => Student::select('*')->get()
-        ));
+        return view('dashboard.students.index', array('students' => Student::select('*')->get()));
     }
 
     public function view($id)
@@ -24,13 +23,10 @@ class StudentsController extends Controller
             ->where('id', $id)
             ->first();
 
-        if ($student != null) {
-            return view('dashboard.students.view', array(
-                'student' => $student
-            ));
-        } else {
+        if ($student == null)
             return redirect()->route('dashboard.student.index')->withErrors(['Student does not exists.']);
-        }
+
+        return view('dashboard.students.view', array('student' => $student));
     }
 
     public function store(StudentCreateRequest $request)
@@ -43,68 +39,61 @@ class StudentsController extends Controller
         $password = $request['password'];
         $gender = $request['gender'];
 
-        if (!Student::where([['email', '=', $email]])->exists()) {
-            $student = new Student();
-            $student->first_name = $first_name;
-            $student->last_name = $last_name;
-            $student->date_of_birth = $date_of_birth;
-            $student->phone_number = $phone_number;
-            $student->email = $email;
-            $student->password = $password;
-            $student->gender = $gender;
-            $student->profile_image = "";
-            $student->status = true;
-
-            $result = $student->save();
-            return redirect()->back()->with('add_status', $result);
-        } else {
+        if (Student::where([['email', '=', $email]])->exists())
             return redirect()->back()->withErrors(['Another student with the same email already exists.']);
-        }
+
+        $student = Student::create([
+            'email' => $email,
+            'password' => $password,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'phone_number' => $phone_number,
+            'date_of_birth' => $date_of_birth,
+            'gender' => $gender,
+            'image_link' => "img/user.png",
+            'status' => 1
+        ]);
+
+        $result = $student->save();
+        return redirect()->back()->with('add_status', $result);
     }
 
-    public function update(CourseCreateRequest $request, $id)
+    public function update(StudentUpdateRequest $request, $id)
     {
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
         $phone_number = $request['phone_number'];
         $email = $request['email'];
-        $address = $request['address'];
         $date_of_birth = $request['date_of_birth'];
         $gender = $request['gender'];
         $status = $request['status'];
 
-        $teacher = Teacher::where('id', $id)->first();
+        $student = Student::where('id', $id)->first();
+        if ($student == null)
+            return redirect()->back()->withErrors(['Student does not exist']);
 
-        if ($teacher != null) {
-            if (!Teacher::where([['id', '!=', $id], ['email', '=', $email]])->exists()) {
-                $result = Teacher::where('id', $id)->update([
-                    'first_name' => $first_name,
-                    'last_name' => $last_name,
-                    'phone_number' => $phone_number,
-                    'email' => $email,
-                    'address' => $address,
-                    'date_of_birth' => $date_of_birth,
-                    'gender' => $gender,
-                    'status' => $status
-                ]);
-                return redirect()->back()->with('add_status', $result);
-            } else {
-                return redirect()->back()->withErrors(['Another Teacher with the same email already exists']);
-            }
-        } else {
-            return redirect()->back()->withErrors(['Teacher does not exist']);
-        }
+        if (Student::where([['id', '!=', $id], ['email', '=', $email]])->exists())
+            return redirect()->back()->withErrors(['Another Student with the same email already exists']);
+
+        $result = Student::where('id', $id)->update([
+            'email' => $email,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'phone_number' => $phone_number,
+            'date_of_birth' => $date_of_birth,
+            'gender' => $gender,
+            'status' => $status
+        ]);
+        return redirect()->back()->with('add_status', $result);
     }
 
     public function destroy($id)
     {
-        $course = Course::where('id', $id)->first();
-        if ($course != null) {
-            $result = $course->delete();
+        $student = Student::where('id', $id)->first();
+        if ($student == null)
+            return redirect()->route('dashboard.course.index')->withErrors(['Student does not exists.']);
 
-            return redirect()->back()->with('add_status', $result);
-        } else {
-            return redirect()->route('dashboard.course.index')->withErrors(['Course does not exists.']);
-        }
+        $result = $student->delete();
+        return redirect()->back()->with('add_status', $result);
     }
 }

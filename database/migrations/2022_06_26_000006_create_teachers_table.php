@@ -15,27 +15,35 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+
             $table->string('email')->unique();
             $table->string('password');
+
             $table->string('first_name')->nullable(false);
             $table->string('last_name')->nullable(false);
-            $table->string('photo_link')->nullable(false);
             $table->integer('phone_number');
+
             $table->date('date_of_birth');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->boolean('gender');
             $table->string('address');
+            $table->string('image_link')->nullable(false)->default("img/user.png");
+
             $table->string("facebook")->nullable(true);
             $table->string("twitter")->nullable(true);
             $table->string("instagram")->nullable(true);
             $table->string("linkedin")->nullable(true);
+
             $table->integer('courses_count')->default(0);
             $table->integer('requests_count')->default(0);
+
+            $table->text("description")->nullable(true);
+            $table->json('interests')->nullable(true);
+
+            $table->string("remember_token")->nullable(true);
+
             $table->timestamps();
         });
-        //            $table->integer('requests_count')->default(0);
-        //            $table->text("description")->nullable(false);????
-        //            $table->json('interests')->nullable();????
     }
 
     /**

@@ -37,7 +37,7 @@ class CoursesController extends Controller
                 'students' => Student::select('*')->get()
             ));
         } else {
-            return redirect()->route('dashboard.course.index')->withErrors(['Course does not exists.']);
+            return redirect()->back()->withErrors(['Course does not exists.']);
         }
     }
 
@@ -108,8 +108,6 @@ class CoursesController extends Controller
             'image_link' => ""
         ]);
 
-//        Teacher::where('id', $teacherId)->update(['courses_count' => DB::raw('courses_count+1')]);
-//        Category::where('id', $categoryId)->update(['courses_count' => DB::raw('courses_count+1')]);
         return redirect()->back()->with('update_status', $result);
     }
 
@@ -121,7 +119,7 @@ class CoursesController extends Controller
 
             return redirect()->back()->with('add_status', $result);
         } else {
-            return redirect()->route('dashboard.course.index')->withErrors(['Course does not exists.']);
+            return redirect()->back()->withErrors(['Course does not exists.']);
         }
     }
 

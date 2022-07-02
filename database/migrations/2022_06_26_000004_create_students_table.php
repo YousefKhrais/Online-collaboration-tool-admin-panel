@@ -20,14 +20,20 @@ class CreateStudentsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->integer('phone_number');
-            $table->string('profile_image');
             $table->date('date_of_birth');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->boolean('gender');
+
+            $table->string('image_link')->nullable(true);
+            $table->string("description")->nullable(true);
+
+            $table->string("facebook")->nullable(true);
+            $table->string("twitter")->nullable(true);
+            $table->string("instagram")->nullable(true);
+            $table->string("github")->nullable(true);
+
             $table->timestamps();
         });
-
-//            $table->string("description");???
     }
 
     /**

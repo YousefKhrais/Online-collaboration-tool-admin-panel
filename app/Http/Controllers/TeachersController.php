@@ -42,15 +42,15 @@ class TeachersController extends Controller
             return redirect()->back()->withErrors(['Another Teacher with same email already exists.']);
 
         $teacher = Teacher::create([
+            'email' => $email,
+            'password' => $password,
             'first_name' => $first_name,
             'last_name' => $last_name,
             'phone_number' => $phone_number,
-            'email' => $email,
-            'password' => $password,
-            'address' => $address,
-            'gender' => $gender,
             'date_of_birth' => $date_of_birth,
-            'photo_link' => "",
+            'gender' => $gender,
+            'address' => $address,
+            'image_link' => "",
             'courses_count' => 0,
             'requests_count' => 0,
             'status' => 1
@@ -69,9 +69,8 @@ class TeachersController extends Controller
         $address = $request['address'];
         $gender = $request['gender'];
         $date_of_birth = $request['date_of_birth'];
-        $photo_link = $request['photo_link'];
+        $image_link = $request['image_link'];
         $status = $request['status'];
-//        $password = $request['password'];
 
         $teacher = Teacher::where('id', $id)->first();
 
@@ -82,15 +81,15 @@ class TeachersController extends Controller
             return redirect()->back()->withErrors(['Another Teacher with the same email already exists']);
 
         $result = Teacher::where('id', $id)->update([
+            'email' => $email,
             'first_name' => $first_name,
             'last_name' => $last_name,
             'phone_number' => $phone_number,
-            'email' => $email,
             'address' => $address,
             'date_of_birth' => $date_of_birth,
             'gender' => $gender,
             'status' => $status,
-            'photo_link' => $photo_link
+            'image_link' => $image_link
         ]);
 
         return redirect()->back()->with('update_status', $result);

@@ -18,12 +18,12 @@ class CreateCoursesTable extends Migration
             $table->string('title')->nullable(false);
             $table->string('description')->nullable(false);
             $table->string('image_link')->nullable(false);
-            $table->integer('students_count')->default(0);
-            $table->integer('num_of_hours')->nullable(false);//Credits (hours)
             $table->integer("price")->nullable(false);
+            $table->integer('num_of_hours')->nullable(false);//Credits (hours)
+            $table->integer('students_count')->default(0);
 
-            $table->integer('teacher_id');//->unsigned()
-            $table->integer('category_id');//->unsigned()
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('category_id')->unsigned();
 
             $table->json("schedule")->nullable(true);
             $table->json("requirements")->nullable(true);
@@ -31,11 +31,6 @@ class CreateCoursesTable extends Migration
             $table->json("outline")->nullable(true);
             $table->timestamps();
         });
-
-//            $table->foreign("teacher_id")->references("id")
-//               ->on("teacher")->references("id")->cascadeOnDelete();
-//        $table->foreign("category_id")->references("id")
-//            ->on("categories")->cascadeOnDelete();
     }
 
     /**
