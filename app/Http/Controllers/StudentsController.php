@@ -69,6 +69,7 @@ class StudentsController extends Controller
         $status = $request['status'];
 
         $student = Student::where('id', $id)->first();
+
         if ($student == null)
             return redirect()->back()->withErrors(['Student does not exist']);
 
@@ -84,12 +85,14 @@ class StudentsController extends Controller
             'gender' => $gender,
             'status' => $status
         ]);
+
         return redirect()->back()->with('add_status', $result);
     }
 
     public function destroy($id)
     {
         $student = Student::where('id', $id)->first();
+
         if ($student == null)
             return redirect()->route('dashboard.course.index')->withErrors(['Student does not exists.']);
 

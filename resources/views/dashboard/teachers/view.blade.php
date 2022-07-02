@@ -9,13 +9,14 @@
         <li class="breadcrumb-item active">View Teacher</li>
     </x-slot>
 
-    @if (session()->has('update_status'))
-        @if (session('update_status'))
-            <div class="alert alert-success">Updated Successfully</div>
-        @else
-            <div class="alert alert-danger">Failed to update teacher</div>
-        @endif
-    @endif
+    <div class="flash-message">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+                <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+            @endif
+        @endforeach
+    </div>
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -197,19 +198,10 @@
                                                                     Photo</label>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="input-group file-browser">
-                                                                    <input
-                                                                        class="form-control border-right-0 browse-file"
-                                                                        placeholder="{{$teacher->photo_link}}" readonly
-                                                                        name="photo_link"
-                                                                        value="{{$teacher->photo_link}}"
-                                                                        type="text">
-                                                                    <label class="input-group-append mb-0">
-                                                                    <span class="btn ripple btn-primary">Browse
-                                                                        <input style="display: none;" type="file">
-                                                                    </span>
-                                                                    </label>
-                                                                </div>
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Profile Photo"
+                                                                       name="image_link"
+                                                                       value="{{$teacher->image_link}}">
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
@@ -364,7 +356,7 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table
-                                                class="table  table-vcenter text-nowrap table-bordered border-bottom">
+                                                    class="table  table-vcenter text-nowrap table-bordered border-bottom">
                                                 <thead>
                                                 <tr>
                                                     <th class="border-bottom-0 text-center">#ID</th>

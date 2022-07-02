@@ -6,6 +6,7 @@ use App\Http\Requests\Teacher\TeacherCreateRequest;
 use App\Http\Requests\Teacher\TeacherUpdateRequest;
 use App\Models\Category;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Session;
 
 class TeachersController extends Controller
 {
@@ -92,7 +93,8 @@ class TeachersController extends Controller
             'image_link' => $image_link
         ]);
 
-        return redirect()->back()->with('update_status', $result);
+        Session::flash('alert-success', 'success');
+        return redirect()->back();
     }
 
     public function destroy($id)

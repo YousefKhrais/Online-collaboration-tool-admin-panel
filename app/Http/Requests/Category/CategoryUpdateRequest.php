@@ -25,8 +25,7 @@ class CategoryUpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'description' => 'required|string',
-//            'image_link' => 'required|url'
+            'description' => 'required|string'
         ];
     }
 
@@ -37,10 +36,7 @@ class CategoryUpdateRequest extends FormRequest
             'title.string' => 'Category Title must be a string',
 
             'description.required' => 'Category Description is required',
-            'description.string' => 'Category Description must be a string',
-
-//            'image_link.required' => 'Image Link is required',
-//            'image_link.url' => 'Image Link must be a URL'
+            'description.string' => 'Category Description must be a string'
         ];
     }
 }

@@ -29,16 +29,15 @@ class CoursesController extends Controller
             ->where('id', $id)
             ->first();
 
-        if ($course != null) {
-            return view('dashboard.courses.view', array(
-                'course' => $course,
-                'teachers' => Teacher::select('*')->get(),
-                'categories' => Category::select('*')->get(),
-                'students' => Student::select('*')->get()
-            ));
-        } else {
+        if ($course == null)
             return redirect()->back()->withErrors(['Course does not exists.']);
-        }
+
+        return view('dashboard.courses.view', array(
+            'course' => $course,
+            'teachers' => Teacher::select('*')->get(),
+            'categories' => Category::select('*')->get(),
+            'students' => Student::select('*')->get()
+        ));
     }
 
     public function store(CourseCreateRequest $request)
@@ -114,13 +113,12 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         $course = Course::where('id', $id)->first();
-        if ($course != null) {
-            $result = $course->delete();
 
-            return redirect()->back()->with('add_status', $result);
-        } else {
+        if ($course == null)
             return redirect()->back()->withErrors(['Course does not exists.']);
-        }
+
+        $result = $course->delete();
+        return redirect()->back()->with('add_status', $result);
     }
 
     public function enroll(StudentEnrollRequest $request, $id)
@@ -137,6 +135,5 @@ class CoursesController extends Controller
         $result = $course->students()->attach($studentId);
 
         return redirect()->back()->with('update_status', $result);
-
     }
 }

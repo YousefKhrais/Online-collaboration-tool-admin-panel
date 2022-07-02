@@ -8,13 +8,21 @@
         <li class="breadcrumb-item active">Teachers</li>
     </x-slot>
 
-    @if (session()->has('add_status'))
-        @if (session('add_status'))
-            <div class="alert alert-success">Created Successfully</div>
-        @else
-            <div class="alert alert-danger">Failed to create teacher</div>
-        @endif
-    @endif
+    <div class="flash-message">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+                <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+            @endif
+        @endforeach
+    </div>
+
+{{--    @if (session()->has('add_status'))--}}
+{{--        @if (session('add_status'))--}}
+{{--            <div class="alert alert-success">Created Successfully</div>--}}
+{{--        @else--}}
+{{--            <div class="alert alert-danger">Failed to create teacher</div>--}}
+{{--        @endif--}}
+{{--    @endif--}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

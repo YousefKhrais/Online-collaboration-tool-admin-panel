@@ -21,11 +21,10 @@ class CategoriesController extends Controller
             ->where('id', $id)
             ->first();
 
-        if ($category != null) {
-            return view('dashboard.categories.view', array('category' => $category));
-        } else {
+        if ($category == null)
             return redirect()->route('dashboard.categories.index')->withErrors(['Category does not exists.']);
-        }
+
+        return view('dashboard.categories.view', array('category' => $category));
     }
 
     public function store(CategoryCreateRequest $request)
@@ -33,32 +32,30 @@ class CategoriesController extends Controller
         $title = $request['title'];
         $description = $request['description'];
 
-        if (!Category::where([['title', '=', $title]])->exists()) {
-            $category = new Category();
-            $category->title = $title;
-            $category->description = $description;
-            $category->courses_count = 0;
-
-            $result = $category->save();
-            return redirect()->back()->with('add_status', $result);
-        } else {
+        if (Category::where([['title', '=', $title]])->exists())
             return redirect()->back()->withErrors(['Another Category with the same title already exists.']);
-        }
+
+        $category = Category::create([
+            'title' => $title,
+            'description' => $description,
+            'courses_count' => 0
+        ]);
+
+        $result = $category->save();
+        return redirect()->back()->with('add_status', $result);
     }
 
     public function update(CategoryUpdateRequest $request, $id)
     {
         $title = $request['title'];
         $description = $request['description'];
-//        $image_link = $request['image_link'];
 
         if (!Category::where([['id', '=', $id]])->exists())
             return redirect()->back()->withErrors(['Category does not exists.']);
 
         $result = Category::where('id', $id)->update([
             'title' => $title,
-            'description' => $description,
-//            'image_link' => ""
+            'description' => $description
         ]);
 
         return redirect()->back()->with('update_status', $result);

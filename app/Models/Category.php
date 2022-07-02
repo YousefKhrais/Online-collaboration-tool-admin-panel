@@ -5,12 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property mixed|string title
- * @property mixed|integer students_count
- * @property mixed|string description
- * @property integer|mixed courses_count
- */
 class Category extends Model
 {
     use HasFactory;
