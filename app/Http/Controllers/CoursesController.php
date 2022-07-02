@@ -112,6 +112,7 @@ class CoursesController extends Controller
 
     public function destroy($id)
     {
+        //test
         $course = Course::where('id', $id)->first();
 
         if ($course == null)
