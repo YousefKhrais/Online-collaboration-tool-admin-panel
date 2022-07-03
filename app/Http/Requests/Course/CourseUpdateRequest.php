@@ -34,10 +34,10 @@ class CourseUpdateRequest extends FormRequest
             'category_id' => 'required|integer',
             'image_link' => 'required|url',
 
-            'schedule' => 'nullable|json',
-            'requirements' => 'nullable|json',
-            'syllabus' => 'nullable|json',
-            'outline' => 'nullable|json'
+            'schedule' => 'nullable|string',
+            'requirements' => 'nullable|string',
+            'syllabus' => 'nullable|string',
+            'outline' => 'nullable|string'
         ];
     }
 
@@ -65,10 +65,10 @@ class CourseUpdateRequest extends FormRequest
             'category_id.required' => 'Category is required',
             'category_id.integer' => 'Category must be a number',
 
-            'schedule.json' => 'Schedule must be json',
-            'requirements.json' => 'Requirements must be json',
-            'syllabus.json' => 'Syllabus must be json',
-            'outline.json' => 'Outline must be json',
+            'schedule.string' => 'Schedule must be string',
+            'requirements.string' => 'Requirements must be string',
+            'syllabus.string' => 'Syllabus must be string',
+            'outline.string' => 'Outline must be string',
         ];
     }
 }

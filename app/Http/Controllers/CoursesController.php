@@ -67,7 +67,7 @@ class CoursesController extends Controller
             'price' => $price,
             'teacher_id' => $teacherId,
             'category_id' => $categoryId,
-            'image_link' => "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+            'image_link' => "https://dashboard.programming-mentor.site/Home/assets/img/course-2.jpg",
             'students_count' => 0
         ]);
 
@@ -117,6 +117,7 @@ class CoursesController extends Controller
             'price' => $price,
             'teacher_id' => $teacherId,
             'category_id' => $categoryId,
+            'image_link' => $image_link,
 
             'schedule' => $schedule,
             'requirements' => $requirements,
