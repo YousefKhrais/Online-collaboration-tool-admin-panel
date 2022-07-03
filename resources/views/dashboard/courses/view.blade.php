@@ -107,20 +107,10 @@
                                                                 <label class="form-label mb-0 mt-2">Course Image</label>
                                                             </div>
                                                             <div class="col">
-                                                                <div class="input-group file-browser">
-                                                                    <input
-                                                                            class="form-control border-right-0 browse-file"
-                                                                            placeholder="{{$course->image_link}}"
-                                                                            readonly
-                                                                            name="photo_link"
-                                                                            value="{{$course->image_link}}"
-                                                                            type="text">
-                                                                    <label class="input-group-append mb-0">
-                                                                    <span class="btn ripple btn-primary">Browse
-                                                                        <input style="display: none;" type="file">
-                                                                    </span>
-                                                                    </label>
-                                                                </div>
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Course Image"
+                                                                       name="image_link"
+                                                                       value="{{$course->image_link}}">
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
@@ -268,6 +258,57 @@
                                                                         <input class="form-control" type="number"
                                                                                placeholder="Category ID" disabled
                                                                                value="{{$course->category->id}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="container">
+                                                            <nav class="navbar navbar-expand-lg navbar-dark">
+                                                                <span class="navbar-brand">More Information</span>
+                                                            </nav>
+                                                            <div class="form-group">
+                                                                <div class="row mt-3">
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label mb-0 mt-2">Schedule</label>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <textarea class="form-control" type="text"
+                                                                                  placeholder="Course Schedule"
+                                                                                  name="schedule" rows="1">{{$course->schedule}}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label mb-0 mt-2">Requirements</label>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <textarea class="form-control" type="text"
+                                                                                  placeholder="Course Requirements"
+                                                                                  name="requirements" rows="1">{{$course->requirements}}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label mb-0 mt-2">Syllabus</label>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <textarea class="form-control" type="text"
+                                                                                  placeholder="Course Syllabus"
+                                                                                  name="syllabus" rows="1">{{$course->syllabus}}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label mb-0 mt-2">Outline</label>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <textarea class="form-control" type="text"
+                                                                                  placeholder="Course Outline"
+                                                                                  name="outline" rows="1">{{$course->outline}}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>

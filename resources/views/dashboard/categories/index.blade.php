@@ -40,7 +40,6 @@
                         <tr>
                             <th style="width: 2%">#</th>
                             <th style="width: 20%">Category Title</th>
-                            <th style="width: 3%">Image</th>
                             <th style="width: 5%">Courses</th>
                             <th style="width: 45%">Description</th>
                             <th style="width: 10%">Created At</th>
@@ -52,10 +51,6 @@
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->title}}</td>
-                                <td class="text-center">
-                                    <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2"
-                                         style="height: 40px" alt="Course Image">
-                                </td>
                                 <td>{{$category->getCoursesCount()}}</td>
                                 <td>{{$category->description}}</td>
                                 <td>{{$category->created_at}}</td>

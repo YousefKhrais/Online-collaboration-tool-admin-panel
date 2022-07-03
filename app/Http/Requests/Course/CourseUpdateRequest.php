@@ -32,7 +32,12 @@ class CourseUpdateRequest extends FormRequest
             'credit' => 'required|integer',
             'teacher_id' => 'required|integer',
             'category_id' => 'required|integer',
-            'image_link' => 'required|url'
+            'image_link' => 'required|url',
+
+            'schedule' => 'nullable|json',
+            'requirements' => 'nullable|json',
+            'syllabus' => 'nullable|json',
+            'outline' => 'nullable|json'
         ];
     }
 
@@ -58,7 +63,12 @@ class CourseUpdateRequest extends FormRequest
             'image_link.url' => 'Course Image must be a URL',
 
             'category_id.required' => 'Category is required',
-            'category_id.integer' => 'Category must be a number'
+            'category_id.integer' => 'Category must be a number',
+
+            'schedule.json' => 'Schedule must be json',
+            'requirements.json' => 'Requirements must be json',
+            'syllabus.json' => 'Syllabus must be json',
+            'outline.json' => 'Outline must be json',
         ];
     }
 }

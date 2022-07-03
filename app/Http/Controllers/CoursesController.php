@@ -67,7 +67,7 @@ class CoursesController extends Controller
             'price' => $price,
             'teacher_id' => $teacherId,
             'category_id' => $categoryId,
-            'image_link' => "",
+            'image_link' => "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
             'students_count' => 0
         ]);
 
@@ -94,6 +94,12 @@ class CoursesController extends Controller
         $price = $request['price'];
         $teacherId = $request['teacher_id'];
         $categoryId = $request['category_id'];
+        $image_link = $request['image_link'];
+
+        $schedule = $request['schedule'];
+        $requirements = $request['requirements'];
+        $syllabus = $request['syllabus'];
+        $outline = $request['outline'];
 
         if (!Course::where([['id', '=', $id]])->exists())
             return redirect()->back()->withErrors(['Course does not exists.']);
@@ -111,7 +117,11 @@ class CoursesController extends Controller
             'price' => $price,
             'teacher_id' => $teacherId,
             'category_id' => $categoryId,
-            'image_link' => ""
+
+            'schedule' => $schedule,
+            'requirements' => $requirements,
+            'syllabus' => $syllabus,
+            'outline' => $outline
         ]);
 
         if ($result)
