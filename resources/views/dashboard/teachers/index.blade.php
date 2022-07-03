@@ -56,7 +56,7 @@
                                 <td>{{$teacher->id}}</td>
                                 <td>{{$teacher->getFullName()}}</td>
                                 <td class="text-center">
-                                    <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2"
+                                    <img src="{{$teacher->image_link}}" class="img-circle elevation-2"
                                          style="height: 40px" alt="User Image">
                                 </td>
                                 <td>{{$teacher->email}}</td>

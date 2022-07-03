@@ -189,27 +189,19 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-md-3">
-                                                                <label class="form-label mb-0 mt-2">Profile
-                                                                    Photo</label>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="input-group file-browser">
-                                                                    <input
-                                                                        class="form-control border-right-0 browse-file"
-                                                                        placeholder="{{$student->photo_link}}" readonly
-                                                                        name="photo_link"
-                                                                        value="{{$student->photo_link}}"
-                                                                        type="text">
-                                                                    <label class="input-group-append mb-0">
-                                                                    <span class="btn ripple btn-primary">Browse
-                                                                        <input style="display: none;" type="file">
-                                                                    </span>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-3">
+                                                                    <label class="form-label mb-0 mt-2">
+                                                                        Profile Photo
                                                                     </label>
                                                                 </div>
+                                                                <div class="col">
+                                                                    <input class="form-control" type="text"
+                                                                           placeholder="Profile Photo"
+                                                                           name="image_link"
+                                                                           value="{{$student->image_link}}">
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-3">
                                                                 <label class="form-label mb-0 mt-2">Created At</label>
@@ -253,6 +245,40 @@
                                                                        value="{{$student->getCoursesCount()}}">
                                                             </div>
                                                         </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label mb-0 mt-2">Linkedin</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Linkedin Profile"
+                                                                       name="linkedin"
+                                                                       value="{{$student->linkedin}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label mb-0 mt-2">Github</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Github Profile"
+                                                                       name="github"
+                                                                       value="{{$student->github}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label mb-0 mt-2">Stack
+                                                                    Overflow</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Stack Overflow Profile"
+                                                                       name="stack_overflow"
+                                                                       value="{{$student->stack_overflow}}">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -261,7 +287,7 @@
                                     <div class="column p-2" style="width: 20%">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <img alt="img" class="img-fluid" src="{{ asset('img/user.png') }}">
+                                                <img alt="img" class="img-fluid" src="{{$student->image_link}}">
                                             </div>
                                             <div class="card-footer p-0">
                                                 <div class="p-3 text-center">

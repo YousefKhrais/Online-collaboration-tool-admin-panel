@@ -32,7 +32,7 @@ class CourseUpdateRequest extends FormRequest
             'credit' => 'required|integer',
             'teacher_id' => 'required|integer',
             'category_id' => 'required|integer',
-//            'image_link' => 'required|url'
+            'image_link' => 'required|url'
         ];
     }
 

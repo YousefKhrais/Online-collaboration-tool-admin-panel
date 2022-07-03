@@ -194,8 +194,9 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-3">
-                                                                <label class="form-label mb-0 mt-2">Profile
-                                                                    Photo</label>
+                                                                <label class="form-label mb-0 mt-2">
+                                                                    Profile Photo
+                                                                </label>
                                                             </div>
                                                             <div class="col">
                                                                 <input class="form-control" type="text"
@@ -259,6 +260,40 @@
                                                                        value="{{$teacher->requests_count}}">
                                                             </div>
                                                         </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label mb-0 mt-2">Linkedin</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Linkedin Profile"
+                                                                       name="linkedin"
+                                                                       value="{{$teacher->linkedin}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label mb-0 mt-2">Github</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Github Profile"
+                                                                       name="github"
+                                                                       value="{{$teacher->github}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label mb-0 mt-2">Stack
+                                                                    Overflow</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="form-control" type="text"
+                                                                       placeholder="Stack Overflow Profile"
+                                                                       name="stack_overflow"
+                                                                       value="{{$teacher->stack_overflow}}">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -267,7 +302,7 @@
                                     <div class="column p-2" style="width: 20%">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <img alt="img" class="img-fluid" src="{{ asset('img/user.png') }}">
+                                                <img alt="img" class="img-fluid" src="{{$teacher->image_link}}">
                                             </div>
                                             <div class="card-footer p-0">
                                                 <div class="p-3 text-center">

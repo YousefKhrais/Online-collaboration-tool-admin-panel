@@ -8,6 +8,7 @@ use App\Http\Requests\Teacher\StudentUpdateRequest;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class StudentsController extends Controller
@@ -45,13 +46,13 @@ class StudentsController extends Controller
 
         $student = Student::create([
             'email' => $email,
-            'password' => $password,
+            'password' => Hash::make($password),
             'first_name' => $first_name,
             'last_name' => $last_name,
             'phone_number' => $phone_number,
             'date_of_birth' => $date_of_birth,
             'gender' => $gender,
-            'image_link' => "img/user.png",
+            'image_link' => "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
             'status' => 1
         ]);
 

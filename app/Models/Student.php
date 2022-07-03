@@ -20,9 +20,8 @@ class Student extends Model
         'gender',
         'image_link',
         'description',
-        'facebook',
-        'twitter',
-        'instagram',
+        'stack_overflow',
+        'linkedin',
         'github',
         'remember_token'
     ];

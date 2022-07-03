@@ -29,7 +29,7 @@ class StudentCreateRequest extends FormRequest
             'phone_number' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required|string',
-            'date_of_birth' => 'required|date',
+            'date_of_birth' => 'nullable|date',
             'gender' => 'required|boolean'
         ];
     }
@@ -46,11 +46,10 @@ class StudentCreateRequest extends FormRequest
             'phone_number.required' => 'Phone Number is required',
             'phone_number.numeric' => 'Phone Number must be a number 0-9',
 
+            'date_of_birth.date' => 'Date Of Birth must be a date',
+
             'email.required' => 'Email is required',
             'email.email' => 'Email must be a string',
-
-            'date_of_birth.required' => 'Date Of Birth is required',
-            'date_of_birth.date' => 'Date Of Birth must be a date',
 
             'password.required' => 'Password Link is required',
             'password.string' => 'Password Link must be a string',

@@ -28,7 +28,7 @@ class StudentUpdateRequest extends FormRequest
             'last_name' => 'required|string',
             'phone_number' => 'required|integer',
             'email' => 'required|email',
-            'date_of_birth' => 'required|date',
+            'date_of_birth' => 'nullable|date',
             'image_link' => 'required|url',
             'gender' => 'required|boolean',
             'status' => 'required|boolean'
