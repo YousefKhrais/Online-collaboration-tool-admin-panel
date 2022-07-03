@@ -6,6 +6,7 @@ use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\Course;
+use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
 {
@@ -42,7 +43,13 @@ class CategoriesController extends Controller
         ]);
 
         $result = $category->save();
-        return redirect()->back()->with('add_status', $result);
+
+        if ($result)
+            Session::flash('alert-success', 'Successfully created category');
+        else
+            Session::flash('alert-danger', 'Failed to create category');
+
+        return redirect()->back();
     }
 
     public function update(CategoryUpdateRequest $request, $id)
@@ -58,7 +65,12 @@ class CategoriesController extends Controller
             'description' => $description
         ]);
 
-        return redirect()->back()->with('update_status', $result);
+        if ($result)
+            Session::flash('alert-success', 'Successfully updated category');
+        else
+            Session::flash('alert-danger', 'Failed to update category');
+
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -75,6 +87,12 @@ class CategoriesController extends Controller
             return redirect()->back()->withErrors(["The Category can't be deleted because it's not empty (Delete the category courses first)."]);
 
         $result = $category->delete();
-        return redirect()->back()->with('add_status', $result);
+
+        if ($result)
+            Session::flash('alert-success', 'Successfully deleted category');
+        else
+            Session::flash('alert-danger', 'Failed to delete category');
+
+        return redirect()->back();
     }
 }

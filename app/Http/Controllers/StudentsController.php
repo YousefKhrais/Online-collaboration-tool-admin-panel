@@ -8,6 +8,7 @@ use App\Http\Requests\Teacher\StudentUpdateRequest;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Session;
 
 class StudentsController extends Controller
 {
@@ -55,7 +56,13 @@ class StudentsController extends Controller
         ]);
 
         $result = $student->save();
-        return redirect()->back()->with('add_status', $result);
+
+        if ($result)
+            Session::flash('alert-success', 'Successfully created student');
+        else
+            Session::flash('alert-danger', 'Failed to create student');
+
+        return redirect()->back();
     }
 
     public function update(StudentUpdateRequest $request, $id)
@@ -86,7 +93,12 @@ class StudentsController extends Controller
             'status' => $status
         ]);
 
-        return redirect()->back()->with('add_status', $result);
+        if ($result)
+            Session::flash('alert-success', 'Successfully updated student');
+        else
+            Session::flash('alert-danger', 'Failed to update student');
+
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -97,6 +109,12 @@ class StudentsController extends Controller
             return redirect()->route('dashboard.course.index')->withErrors(['Student does not exists.']);
 
         $result = $student->delete();
-        return redirect()->back()->with('add_status', $result);
+
+        if ($result)
+            Session::flash('alert-success', 'Successfully deleted student');
+        else
+            Session::flash('alert-danger', 'Failed to deleted student');
+
+        return redirect()->back();
     }
 }

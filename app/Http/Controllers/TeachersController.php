@@ -6,6 +6,7 @@ use App\Http\Requests\Teacher\TeacherCreateRequest;
 use App\Http\Requests\Teacher\TeacherUpdateRequest;
 use App\Models\Category;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class TeachersController extends Controller
@@ -44,21 +45,28 @@ class TeachersController extends Controller
 
         $teacher = Teacher::create([
             'email' => $email,
-            'password' => $password,
+            'password' => Hash::make($password),
             'first_name' => $first_name,
             'last_name' => $last_name,
             'phone_number' => $phone_number,
             'date_of_birth' => $date_of_birth,
             'gender' => $gender,
             'address' => $address,
-            'image_link' => "",
+            'image_link' => "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+            'description' => "Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut",
             'courses_count' => 0,
             'requests_count' => 0,
             'status' => 1
         ]);
 
         $result = $teacher->save();
-        return redirect()->back()->with('add_status', $result);
+
+        if ($result)
+            Session::flash('alert-success', 'Successfully created teacher');
+        else
+            Session::flash('alert-danger', 'Failed to create teacher');
+
+        return redirect()->back();
     }
 
     public function update(TeacherUpdateRequest $request, $id)
@@ -93,7 +101,11 @@ class TeachersController extends Controller
             'image_link' => $image_link
         ]);
 
-        Session::flash('alert-success', 'success');
+        if ($result)
+            Session::flash('alert-success', 'Successfully updated teacher');
+        else
+            Session::flash('alert-danger', 'Failed to update teacher');
+
         return redirect()->back();
     }
 
@@ -111,6 +123,12 @@ class TeachersController extends Controller
             return redirect()->back()->withErrors(["The Teacher can't be deleted (You have to delete the teacher courses first)."]);
 
         $result = $teacher->delete();
-        return redirect()->back()->with('add_status', $result);
+
+        if ($result)
+            Session::flash('alert-success', 'Successfully deleted teacher');
+        else
+            Session::flash('alert-danger', 'Failed to deleted teacher');
+
+        return redirect()->back();
     }
 }

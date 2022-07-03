@@ -9,13 +9,14 @@
         <li class="breadcrumb-item active">View Course</li>
     </x-slot>
 
-    @if (session()->has('update_status'))
-        @if (session('update_status'))
-            <div class="alert alert-success">Updated Successfully</div>
-        @else
-            <div class="alert alert-danger">Failed to update course</div>
-        @endif
-    @endif
+    <div class="flash-message">
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+                <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+            @endif
+        @endforeach
+    </div>
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -108,11 +109,12 @@
                                                             <div class="col">
                                                                 <div class="input-group file-browser">
                                                                     <input
-                                                                        class="form-control border-right-0 browse-file"
-                                                                        placeholder="{{$course->image_link}}" readonly
-                                                                        name="photo_link"
-                                                                        value="{{$course->image_link}}"
-                                                                        type="text">
+                                                                            class="form-control border-right-0 browse-file"
+                                                                            placeholder="{{$course->image_link}}"
+                                                                            readonly
+                                                                            name="photo_link"
+                                                                            value="{{$course->image_link}}"
+                                                                            type="text">
                                                                     <label class="input-group-append mb-0">
                                                                     <span class="btn ripple btn-primary">Browse
                                                                         <input style="display: none;" type="file">
@@ -335,11 +337,13 @@
                                                                 <i class="fas fa-folder"></i> View
                                                             </a>
                                                             <form style="display: inline-block;" method="POST"
-                                                                  action="{{ URL('student/delete/'.$student->id) }}">
+                                                                  action="{{ URL('course/unenroll/'.$course->id) }}">
                                                                 <input type="hidden" name="_token"
                                                                        value="{{ csrf_token() }}">
+                                                                <input type="hidden" name="student_id"
+                                                                       value="{{ $student->id }}">
                                                                 <button class="btn btn-danger btn-sm" type="submit">
-                                                                    <i class="fas fa-trash"></i> Delete
+                                                                    <i class="fas fa-trash"></i> Unenroll
                                                                 </button>
                                                             </form>
                                                         </td>
@@ -379,7 +383,9 @@
                             <label class="form-label">Select Student</label>
                             <select class="form-control" name="student_id">
                                 @foreach ($students as $student)
-                                    <option value="{{$student->id}}">{{$student->getFullName()}}</option>
+                                    @if(!$course->isStudentEnrolled($student))
+                                        <option value="{{$student->id}}">{{$student->getFullName()}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

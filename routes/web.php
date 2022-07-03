@@ -39,6 +39,7 @@ Route::prefix('/course')->group(function () {
     Route::post('/store', [CoursesController::class, 'store'])->name('course.store');
     Route::get('/view/{id}', [CoursesController::class, 'view']);
     Route::post('/enroll/{id}', [CoursesController::class, 'enroll']);
+    Route::post('/unenroll/{id}', [CoursesController::class, 'unenroll']);
     Route::post('/update/{id}', [CoursesController::class, 'update']);
     Route::post('/delete/{id}', [CoursesController::class, 'destroy']);
 });
