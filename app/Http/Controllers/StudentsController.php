@@ -52,7 +52,7 @@ class StudentsController extends Controller
             'phone_number' => $phone_number,
             'date_of_birth' => $date_of_birth,
             'gender' => $gender,
-            'image_link' => "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+            'image_link' => "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
             'status' => 1
         ]);
 

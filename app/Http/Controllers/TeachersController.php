@@ -52,7 +52,7 @@ class TeachersController extends Controller
             'date_of_birth' => $date_of_birth,
             'gender' => $gender,
             'address' => $address,
-            'image_link' => "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+            'image_link' => "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
             'description' => "Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut",
             'courses_count' => 0,
             'requests_count' => 0,
