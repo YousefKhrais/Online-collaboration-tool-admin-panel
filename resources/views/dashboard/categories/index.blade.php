@@ -38,12 +38,12 @@
                     <table id="categories_table" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th style="width: 2%">#</th>
+                            <th style="width: 1%">#</th>
                             <th style="width: 20%">Category Title</th>
                             <th style="width: 5%">Courses</th>
-                            <th style="width: 45%">Description</th>
-                            <th style="width: 10%">Created At</th>
-                            <th style="width: 15%"></th>
+                            <th style="width: 50%">Description</th>
+                            <th style="width: 15%">Created At</th>
+                            <th style="width: 9%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,14 +55,15 @@
                                 <td>{{$category->description}}</td>
                                 <td>{{$category->created_at}}</td>
                                 <td class="project-actions text-left">
-                                    <a class="btn btn-primary btn-sm" href="{{ URL('category/view/'.$category->id) }}">
-                                        <i class="fas fa-folder"></i> View
+                                    <a class="btn btn-primary btn-sm"
+                                       href="{{ URL('category/view/'.$category->id) }}">
+                                        <i class="fas fa-eye"></i>
                                     </a>
                                     <form style="display: inline-block;" method="POST"
                                           action="{{ URL('category/delete/'.$category->id) }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button class="btn btn-danger btn-sm" type="submit">
-                                            <i class="fas fa-trash"></i> Delete
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
                                 </td>

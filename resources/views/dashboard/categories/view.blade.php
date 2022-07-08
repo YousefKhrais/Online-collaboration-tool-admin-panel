@@ -160,15 +160,15 @@
                                             <thead>
                                             <tr>
                                                 <th style="width: 1%">#</th>
-                                                <th style="width: 15%">Course Title</th>
-                                                <th style="width: 5%">Image</th>
-                                                <th style="width: 10%">Teacher Name</th>
-                                                <th style="width: 8%">Category</th>
-                                                <th style="width: 5%">Credits</th>
+                                                <th style="width: 18%">Course Title</th>
+                                                <th style="width: 3%">Image</th>
+                                                <th style="width: 13%">Teacher Name</th>
+                                                <th style="width: 13%">Category</th>
+                                                <th style="width: 8%">Credits</th>
                                                 <th style="width: 5%">Price</th>
                                                 <th style="width: 5%">Students</th>
-                                                <th style="width: 15%">Created At</th>
-                                                <th style="width: 15%"></th>
+                                                <th style="width: 13%">Created At</th>
+                                                <th style="width: 8%"></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -177,27 +177,24 @@
                                                     <td>{{$course->id}}</td>
                                                     <td>{{$course->title}}</td>
                                                     <td class="text-center">
-                                                        <img src="{{ asset('img/user.png') }}"
-                                                             class="img-circle elevation-2"
+                                                        <img src="{{$course->image_link}}" class="img-circle elevation-2"
                                                              style="height: 40px" alt="Course Image">
                                                     </td>
                                                     <td>{{$course->teacher->getFullName()}}</td>
                                                     <td>{{$course->category->title}}</td>
-                                                    <td>{{$course->num_of_hours}}</td>
-                                                    <td>{{$course->price}}</td>
+                                                    <td>{{$course->num_of_hours}} Hours</td>
+                                                    <td>{{$course->price}}$</td>
                                                     <td>{{$course->getStudentsCount()}}</td>
                                                     <td>{{$course->created_at}}</td>
                                                     <td class="project-actions text-left">
-                                                        <a class="btn btn-primary btn-sm"
-                                                           href="{{ URL('course/view/'.$course->id) }}">
-                                                            <i class="fas fa-folder"></i> View
+                                                        <a class="btn btn-primary btn-sm" href="{{ URL('course/view/'.$course->id) }}">
+                                                            <i class="fas fa-eye"></i>
                                                         </a>
                                                         <form style="display: inline-block;" method="POST"
                                                               action="{{ URL('course/delete/'.$course->id) }}">
-                                                            <input type="hidden" name="_token"
-                                                                   value="{{ csrf_token() }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                             <button class="btn btn-danger btn-sm" type="submit">
-                                                                <i class="fas fa-trash"></i> Delete
+                                                                <i class="fas fa-trash"></i>
                                                             </button>
                                                         </form>
                                                     </td>

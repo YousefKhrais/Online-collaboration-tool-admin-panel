@@ -345,13 +345,13 @@
                                                     <th style="width: 1%">#</th>
                                                     <th style="width: 15%">Student Name</th>
                                                     <th style="width: 5%">Image</th>
-                                                    <th style="width: 19%">Email</th>
+                                                    <th style="width: 20%">Email</th>
                                                     <th style="width: 5%">Gender</th>
-                                                    <th style="width: 10%">Phone Number</th>
-                                                    <th style="width: 10%">Courses Count</th>
-                                                    <th style="width: 5%" class="text-center">Status</th>
+                                                    <th style="width: 15%">Phone Number</th>
+                                                    <th style="width: 5%">Courses</th>
+                                                    <th style="width: 7%" class="text-center">Status</th>
                                                     <th style="width: 15%">Created At</th>
-                                                    <th style="width: 15%"></th>
+                                                    <th style="width: 8%"></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -360,8 +360,7 @@
                                                         <td>{{$student->id}}</td>
                                                         <td>{{$student->getFullName()}}</td>
                                                         <td class="text-center">
-                                                            <img src="{{ asset('img/user.png') }}"
-                                                                 class="img-circle elevation-2"
+                                                            <img src="{{$student->image_link}}" class="img-circle elevation-2"
                                                                  style="height: 40px" alt="User Image">
                                                         </td>
                                                         <td>{{$student->email}}</td>
@@ -369,24 +368,28 @@
                                                         <td>{{$student->phone_number}}</td>
                                                         <td class="text-center">{{$student->getCoursesCount()}}</td>
                                                         <td class="project-state text-center">
-                                                            <span class="badge badge-success">Active</span>
+                                                            @if($student->status)
+                                                                <span class="badge badge-success">Active</span>
+                                                            @else
+                                                                <span class="badge badge-danger">Inactive</span>
+                                                            @endif
                                                         </td>
                                                         <td>{{$student->created_at}}</td>
                                                         <td class="project-actions text-left">
-                                                            <a class="btn btn-primary btn-sm"
-                                                               href="{{ URL('student/view/'.$student->id) }}">
-                                                                <i class="fas fa-folder"></i> View
+                                                            <a class="btn btn-primary btn-sm" href="{{ URL('student/view/'.$student->id) }}">
+                                                                <i class="fas fa-eye"></i>
                                                             </a>
-                                                            <form style="display: inline-block;" method="POST"
-                                                                  action="{{ URL('course/unenroll/'.$course->id) }}">
-                                                                <input type="hidden" name="_token"
-                                                                       value="{{ csrf_token() }}">
-                                                                <input type="hidden" name="student_id"
-                                                                       value="{{ $student->id }}">
-                                                                <button class="btn btn-danger btn-sm" type="submit">
-                                                                    <i class="fas fa-trash"></i> Unenroll
-                                                                </button>
-                                                            </form>
+                                                                <form style="display: inline-block;" method="POST"
+                                                                      action="{{ URL('course/unenroll/'.$course->id) }}">
+                                                                    <input type="hidden" name="_token"
+                                                                           value="{{ csrf_token() }}">
+                                                                    <input type="hidden" name="student_id"
+                                                                           value="{{ $student->id }}">
+                                                                    <button class="btn btn-danger btn-sm"
+                                                                            title="Unenroll" type="submit">
+                                                                        <i class="fas fa-user-minus"></i>
+                                                                    </button>
+                                                                </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

@@ -35,6 +35,10 @@ class Teacher extends Model
         return $this->hasMany(Course::class);
     }
 
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 
     public function getGender()
     {

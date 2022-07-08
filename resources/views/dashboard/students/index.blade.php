@@ -40,13 +40,13 @@
                             <th style="width: 1%">#</th>
                             <th style="width: 15%">Student Name</th>
                             <th style="width: 5%">Image</th>
-                            <th style="width: 19%">Email</th>
+                            <th style="width: 20%">Email</th>
                             <th style="width: 5%">Gender</th>
-                            <th style="width: 10%">Phone Number</th>
-                            <th style="width: 8%">Courses Count</th>
-                            <th style="width: 5%" class="text-center">Status</th>
+                            <th style="width: 15%">Phone Number</th>
+                            <th style="width: 8%">Courses</th>
+                            <th style="width: 7%" class="text-center">Status</th>
                             <th style="width: 15%">Created At</th>
-                            <th style="width: 20%"></th>
+                            <th style="width: 9%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,13 +72,13 @@
                                 <td>{{$student->created_at}}</td>
                                 <td class="project-actions text-left">
                                     <a class="btn btn-primary btn-sm" href="{{ URL('student/view/'.$student->id) }}">
-                                        <i class="fas fa-folder"></i> View
+                                        <i class="fas fa-eye"></i>
                                     </a>
                                     <form style="display: inline-block;" method="POST"
                                           action="{{ URL('student/delete/'.$student->id) }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button class="btn btn-danger btn-sm" type="submit">
-                                            <i class="fas fa-trash"></i> Delete
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
                                 </td>

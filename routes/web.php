@@ -19,6 +19,7 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RequestsController;
 
 Route::get('/', function () {
     return Redirect::to('/dashboard');
@@ -58,6 +59,13 @@ Route::prefix('/student')->group(function () {
     Route::get('/view/{id}', [StudentsController::class, 'view']);
     Route::post('/update/{id}', [StudentsController::class, 'update']);
     Route::post('/delete/{id}', [StudentsController::class, 'destroy']);
+});
+
+Route::prefix('/request')->group(function () {
+    Route::get('/', [RequestsController::class, 'index'])->middleware(['auth'])->name('requests');
+    Route::get('/view/{id}', [RequestsController::class, 'view']);
+    Route::post('/accept/{id}', [RequestsController::class, 'accept']);
+    Route::post('/reject/{id}', [RequestsController::class, 'reject']);
 });
 
 require __DIR__ . '/auth.php';

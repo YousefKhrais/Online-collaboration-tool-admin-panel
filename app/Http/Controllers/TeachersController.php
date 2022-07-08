@@ -19,6 +19,7 @@ class TeachersController extends Controller
     public function view($id)
     {
         $teacher = Teacher::with('courses')
+            ->with('requests')
             ->select('*')
             ->where('id', $id)
             ->first();

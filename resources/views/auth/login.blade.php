@@ -1,59 +1,55 @@
 <x-guest-layout>
-    <div class="login-box">
+    <div class="login-box" style="width: 35%">
         <div class="card card-outline card-primary">
-          <div class="card-header text-center">
-            <a href="/" class="h1">{{ config('app.name', 'Laravel') }}</a>
-          </div>
-          <div class="card-body">
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-3" :errors="$errors" />
-            
-            <p class="login-box-msg">Sign in to start your session</p>
-      
-            <form method="POST" action="{{ route('login') }}">
-              @csrf
+            <div class="card-body w-auto">
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-3" :errors="$errors"/>
 
-              <div class="input-group mb-3">
-                <input type="email" class="form-control" name="email" placeholder="Email" :value="old('email')" required autofocus>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
-                  </div>
+                <div class="text-center">
+                    <h2 class="fw-bold mb-5">Admin Login</h2>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="current-password">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-8">
-                  <div class="icheck-primary">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">
-                      Remember Me
-                    </label>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-4">
-                  <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                </div>
-                <!-- /.col -->
-              </div>
-            </form>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email address</label>
+                        <input type="email" name="email" id="email" class="form-control"/>
+                        @error("email")
+                        <small class="text-danger">{{ $message  }}</small>
+                        @enderror
+                    </div>
 
-            @if (Route::has('password.request'))
-              <p class="mb-1">
-                <a href="{{ route('password.request') }}">I forgot my password</a>
-              </p>
-            @endif
-          </div>
-          <!-- /.card-body -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control"/>
+                        @error("password")
+                        <small class="text-danger">
+                            {{ $message  }}
+                        </small>
+                        @enderror
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                        <label class="form-check-label" for="remember">
+                            {{ __('Remember Me') }}
+                        </label>
+                    </div>
+
+                    <div class="text-center p-3">
+                        @error("login")
+                        <small class="text-danger">
+                            {{ $message  }}
+                        </small>
+                        @enderror
+                    </div>
+
+                    <div class="text-center p-3">
+                        <button type="submit" class="btn btn-dark mb-3 w-50 rounded-pill">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- /.card -->
     </div>
 </x-guest-layout>

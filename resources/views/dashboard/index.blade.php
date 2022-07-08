@@ -28,7 +28,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{$teachers_count}}</h3>
@@ -41,7 +41,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>{{$students_count}}</h3>
@@ -54,7 +54,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg col-6">
                     <div class="small-box bg-gradient-orange">
                         <div class="inner" style="color: white">
                             <h3>{{$courses_count}}</h3>
@@ -67,7 +67,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{$categories_count}}</h3>
@@ -77,7 +77,20 @@
                             <i class="ion ion-pie-graph"></i>
                         </div>
                         <a href="{{ route('categories') }}" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                                    class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg col-6">
+                    <div class="small-box bg-indigo">
+                        <div class="inner">
+                            <h3>{{$requests_count}}</h3>
+                            <p>Courses Requests</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="{{ route('requests') }}" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

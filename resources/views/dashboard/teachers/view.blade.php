@@ -39,7 +39,7 @@
                             <a class="nav-link" data-toggle="tab" href="#tab1">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tab2">Courses Requests</a>
+                            <a class="nav-link" data-toggle="tab" href="#tab2">Requests</a>
                         </li>
                     </ul>
                 </div>
@@ -320,96 +320,97 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="tab1">
-                        <div class="row">
+                        <div class="row p-3">
                             <div class="col-xl-12 col-md-12 col-lg-12">
-                                <div class="card">
-                                    <div class="card-header  border-0">
-                                        <h4 class="card-title">Teacher Courses</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <table id="courses_table" class="table table-bordered table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th style="width: 1%">#</th>
-                                                <th style="width: 15%">Course Title</th>
-                                                <th style="width: 5%">Image</th>
-                                                <th style="width: 10%">Teacher Name</th>
-                                                <th style="width: 8%">Category</th>
-                                                <th style="width: 5%">Credits</th>
-                                                <th style="width: 5%">Price</th>
-                                                <th style="width: 5%">Students</th>
-                                                <th style="width: 15%">Created At</th>
-                                                <th style="width: 15%"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach ($teacher->courses as $course)
-                                                <tr>
-                                                    <td>{{$course->id}}</td>
-                                                    <td>{{$course->title}}</td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('img/user.png') }}"
-                                                             class="img-circle elevation-2"
-                                                             style="height: 40px" alt="Course Image">
-                                                    </td>
-                                                    <td>{{$course->teacher->getFullName()}}</td>
-                                                    <td>{{$course->category->title}}</td>
-                                                    <td>{{$course->num_of_hours}}</td>
-                                                    <td>{{$course->price}}</td>
-                                                    <td>{{$course->getStudentsCount()}}</td>
-                                                    <td>{{$course->created_at}}</td>
-                                                    <td class="project-actions text-left">
-                                                        <a class="btn btn-primary btn-sm"
-                                                           href="{{ URL('course/view/'.$course->id) }}">
-                                                            <i class="fas fa-folder"></i> View
-                                                        </a>
-                                                        <form style="display: inline-block;" method="POST"
-                                                              action="{{ URL('course/delete/'.$course->id) }}">
-                                                            <input type="hidden" name="_token"
-                                                                   value="{{ csrf_token() }}">
-                                                            <button class="btn btn-danger btn-sm" type="submit">
-                                                                <i class="fas fa-trash"></i> Delete
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <table id="courses_table" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 1%">#</th>
+                                        <th style="width: 20%">Course Title</th>
+                                        <th style="width: 3%">Image</th>
+                                        <th style="width: 13%">Teacher Name</th>
+                                        <th style="width: 13%">Category</th>
+                                        <th style="width: 8%">Credits</th>
+                                        <th style="width: 5%">Price</th>
+                                        <th style="width: 5%">Students</th>
+                                        <th style="width: 13%">Created At</th>
+                                        <th style="width: 5%"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($teacher->courses as $course)
+                                        <tr>
+                                            <td>{{$course->id}}</td>
+                                            <td>{{$course->title}}</td>
+                                            <td class="text-center">
+                                                <img src="{{$course->image_link}}" class="img-circle elevation-2"
+                                                     style="height: 40px" alt="Course Image">
+                                            </td>
+                                            <td>{{$course->teacher->getFullName()}}</td>
+                                            <td>{{$course->category->title}}</td>
+                                            <td>{{$course->num_of_hours}} Hours</td>
+                                            <td>{{$course->price}}$</td>
+                                            <td>{{$course->getStudentsCount()}}</td>
+                                            <td>{{$course->created_at}}</td>
+                                            <td class="project-actions text-left">
+                                                <a class="btn btn-primary btn-sm"
+                                                   href="{{ URL('course/view/'.$course->id) }}">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="tab2">
-                        <div class="row">
+                        <div class="row p-3">
                             <div class="col-xl-12 col-md-12 col-lg-12">
-                                <div class="card">
-                                    <div class="card-header  border-0">
-                                        <h4 class="card-title">Courses Requests</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table
-                                                    class="table  table-vcenter text-nowrap table-bordered border-bottom">
-                                                <thead>
-                                                <tr>
-                                                    <th class="border-bottom-0 text-center">#ID</th>
-                                                    <th class="border-bottom-0">Course Title</th>
-                                                    <th class="border-bottom-0">Category</th>
-                                                    <th class="border-bottom-0">Note</th>
-                                                    <th class="border-bottom-0">Created At</th>
-                                                    <th class="border-bottom-0">Status</th>
-                                                    <th class="border-bottom-0">Actions</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table id="requests_table" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 1%">#ID</th>
+                                        <th style="width: 15%">Teacher Name</th>
+                                        <th style="width: 25%">Title</th>
+                                        <th style="width: 5%">Status</th>
+                                        <th style="width: 20%">Admin Note</th>
+                                        <th style="width: 15%">Created At</th>
+                                        <th style="width: 15%">Updated At</th>
+                                        <th style="width: 5%"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($teacher->requests as $request)
+                                        <tr>
+                                            <td>{{$request->id}}</td>
+                                            <td>{{$request->teacher->getFullName()}}</td>
+                                            <td>{{$request->title}}</td>
+                                            <td class="project-state text-center">
+                                                @if($request->status ==0)
+                                                    <span class="badge badge-primary">Open</span>
+                                                @elseif($request->status==1)
+                                                    <span class="badge badge-danger">Rejected</span>
+                                                @elseif($request->status==2)
+                                                    <span class="badge badge-success">Accepted</span>
+                                                @else
+                                                    <span class="badge badge-warning">Unknown</span>
+                                                @endif
+                                            </td>
+                                            <td>{{$request->admin_note}}</td>
+                                            <td>{{$request->created_at}}</td>
+                                            <td>{{$request->updated_at}}</td>
+                                            <td class="project-actions text-center">
+                                                <a class="btn btn-primary btn-sm" title="View"
+                                                   href="{{ URL('request/view/'.$request->id) }}">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
