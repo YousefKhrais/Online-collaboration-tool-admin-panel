@@ -34,6 +34,7 @@ class CreateStudentsTable extends Migration
             $table->string("remember_token")->nullable(true);
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -30,6 +30,7 @@ class CreateCoursesTable extends Migration
             $table->string("syllabus")->nullable(true);
             $table->string("outline")->nullable(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

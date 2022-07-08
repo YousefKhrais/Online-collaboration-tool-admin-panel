@@ -24,6 +24,7 @@ class CreateRequestsTable extends Migration
             $table->integer('teacher_id');
             $table->integer('category_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

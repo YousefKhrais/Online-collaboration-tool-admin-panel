@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Category\CategoryCreateRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Models\Category;
-use App\Models\Course;
 use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller

@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('description')->nullable(false);
             $table->integer("courses_count")->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
